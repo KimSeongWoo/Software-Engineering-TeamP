@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+    <h3>home</h3>
+
+    {% if data.is_authenticated %}
+    <h2>로그인 정보</h2>
+    <ul>
+        {% for key,value in data.items %}
+        <li>{{key}} : {{value}}</li>
+        {% endfor %}
+    </ul>
+    <a href="/logout">로그아웃</a>
+
+    {% else %}
+    <h2>로그인하세요</h2>
+    <a href="/login">로그인</a>
+	<a href="/register">회원가입</a>
+    
+    {% endif %}
+</body>
+</html>
