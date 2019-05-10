@@ -16,5 +16,5 @@ urlpatterns = [
     url(r'^register/',Login.views.register,name='register'),
     url(r'^login/',Login.views.loginview,name='login'),
     url(r'^logout/',Login.views.logoutview,name = 'logout'),
-    url(r'^posting',Posting.views.posting,name="posting"),
+    url(r'^posting/',Posting.views.posting,name="posting"),
 ]
