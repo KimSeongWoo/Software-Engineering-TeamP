@@ -8,6 +8,7 @@ import django.contrib.auth.views
 from django.contrib import admin
 import Posting.views as post
 import Member.views as member
+
 #from django.urls import path 2.0에서 추가된 기능
 
 
@@ -25,8 +26,9 @@ urlpatterns = [
     url(r'^posting',post.posting,name="posting"),
 
     #--------------profile----------------
-
-    #url()
+    url(r'^profile/my_profile/',member.myprofile, name='myprofile'),
+    #url(r'^profile/(?P<userid>[a-zA-Z0-9]+)',member.profile_detail, name='profile_detail'),
+    
 
     #---------------Modify----------------
     #url(r'^profile/<>/modify/password',member.passwordmodify, name = 'password_modify')

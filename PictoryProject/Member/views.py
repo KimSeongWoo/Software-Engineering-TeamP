@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .forms import UserForm, LoginForm, ProfileShowForm, PasswordModifyForm
 from .models import Profile
 
@@ -50,9 +51,25 @@ def register(request):
 
 #--------------------Profile----------------------
 @login_required # 로그인 여부를 검사하여 접근을 통제할 수 있다. 단, 함수형 뷰일때만
-def profileview(request,myid):
-    infos = Profile.objects.all()
-    return render(request, "Profile/profile.html")
+def myprofile(request):
+    user=request.user
+    profile = Profile.objects.filter(name = userid)
+    context = {
+        'user': user,
+        'profile': profile,
+    }
+    return render(request, 'profile/myprofile.html', context)
+
+@login_required
+def profile_detail(request, userid):
+    user = get_object_or_404(User, pk=userid)
+    profile = Profile.objects.filter(name = userid)
+    context = {
+        'user': user,
+        'profile': profile,
+    }
+    return render(request, 'profile/detail.html', context)
+
     
 
 #--------------------modify-----------------------프로필, 비밀번호

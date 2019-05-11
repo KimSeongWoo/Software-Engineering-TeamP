@@ -82,7 +82,7 @@
     <Content Include="Member\templates\Login\register.html" />
     <Content Include="Member\templates\Login\register_error.html" />
     <Content Include="Member\templates\Modify\password_modify_error.html" />
-    <Content Include="Member\templates\Profile\profile.html" />
+    <Content Include="Member\templates\Profile\myprofile.html" />
     <Content Include="Posting\templates\Posting\css\My_posting_list.css" />
     <Content Include="Posting\templates\Posting\img\Satomi1.png" />
     <Content Include="Posting\templates\Posting\img\simpson1.gif" />

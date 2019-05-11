@@ -6,22 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-    <h3>home</h3>
-
-    {% if data.is_authenticated %}
-    <h2>로그인 정보</h2>
+    <h2>프로필 정보 {{profile.owner_id}}</h2>
+   
     <ul>
-        {% for key,value in data.items %}
+        {% for key,value in context.items %}
         <li>{{key}} : {{value}}</li>
         {% endfor %}
     </ul>
-    <a href="/logout">로그아웃</a>
-
-    {% else %}
-    <h2>로그인하세요</h2>
-    <a href="/login">로그인</a>
-	<a href="/register">회원가입</a>
-    <a href="/profile">프로필</a>
-    {% endif %}
 </body>
 </html>
