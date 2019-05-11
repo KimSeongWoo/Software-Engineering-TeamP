@@ -6,7 +6,7 @@ from django.conf import settings
 
 class Profile(models.Model) :
     #myiamge = imagefield
-    owner_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     #mypw = models.CharField(max_length = 20, blank = True)
     name = models.CharField(max_length = 30, null = True, blank = True)
     email = models.CharField(max_length = 30, null = True, blank = True)
