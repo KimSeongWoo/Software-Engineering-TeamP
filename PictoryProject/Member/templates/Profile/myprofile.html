@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-    <h2>프로필 정보 {{profile.owner_id}}</h2>
-   
+    <h2>프로필 정보 : {{request.user.id}}</h2>
     <ul>
-        {% for key,value in context.items %}
+        {% for key,value in data.items %}
         <li>{{key}} : {{value}}</li>
         {% endfor %}
     </ul>
+    
+    <a href="profile">
 </body>
 </html>

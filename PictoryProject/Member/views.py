@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm, LoginForm, ProfileShowForm, PasswordModifyForm
+from .forms import UserForm, LoginForm, ProfileShowForm, ProfileEditForm, PasswordeditForm
 from .models import Profile
 
 # Create your views here.
@@ -55,12 +55,9 @@ def register(request):
 @login_required # 로그인 여부를 검사하여 접근을 통제할 수 있다. 단, 함수형 뷰일때만
 def myprofile(request):
     user=request.user
-    profile = Profile.objects.filter(name = userid)
-    context = {
-        'user': user,
-        'profile': profile,
-    }
-    return render(request, 'profile/myprofile.html', context)
+    profile = Profile.objects.get(owner_id = user.id)
+    data ={'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
+    return render(request, 'profile/myprofile.html', context={'data': data})
 
 @login_required
 def profile_detail(request, userid):
@@ -74,9 +71,9 @@ def profile_detail(request, userid):
 
     
 
-#--------------------modify-----------------------프로필, 비밀번호
+#--------------------edit-----------------------프로필, 비밀번호
 @login_required 
-def passwordmodify(request): #미완성
+def password_edit(request): #미완성
      if request.method=="POST":
         form = LoginForm(request.POST)
         name = request.POST['username']
@@ -90,6 +87,20 @@ def passwordmodify(request): #미완성
         else:
             return render(request,"Login/login_error.html")
      else: #GET방식이면 비밀번호 변경 페이지로 이동
-        form = PasswordModifyForm()
-        return render(request, "Modify/password.html", {"form": form})
+        form = PasswordeditForm()
+        return render(request, "edit/password.html", {"form": form})
+
+def profile_edit(request): #미완성
+     if request.method=="POST":
+        form = ProfileEditForm(request.POST)
+        if user is not None:
+            login(request,user)
+            #return redirect("home")#시작페이지로 이동
+            return redirect("Posting/My_posting_list")
+        else:
+            return render(request,"Login/login_error.html")
+     else: #GET방식이면 비밀번호 변경 페이지로 이동
+        form = PasswordeditForm()
+        return render(request, "edit/password.html", {"form": form})
+
 

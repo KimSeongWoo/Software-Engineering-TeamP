@@ -14,7 +14,7 @@ class LoginForm(ModelForm):
         fields = ["username", "password"]
 
  #pw변경은 set_password(raw_password)을 사용
-class PasswordModifyForm(ModelForm) :
+class PasswordeditForm(ModelForm) :
     class Meta :
         model = User
         fields = ["password"]
@@ -26,7 +26,7 @@ class ProfileShowForm(ModelForm): #변경도 일단은 동일하게
         model = Profile
         fields = ['name','email','phone','introduction']
 
-class ProfileModifyForm(ModelForm) :
+class ProfileEditForm(ModelForm) :
     class Meta:
         model = Profile
         fields = ['name','email','phone','introduction'] 

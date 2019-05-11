@@ -30,7 +30,6 @@ urlpatterns = [
     #url(r'^profile/(?P<userid>[a-zA-Z0-9]+)',member.profile_detail, name='profile_detail'),
     
 
-    #---------------Modify----------------
-    #url(r'^profile/<>/modify/password',member.passwordmodify, name = 'password_modify')
-
+    #---------------edit----------------
+    url(r'^profile/my_profile/edit',member.profile_edit, name='profile_edit'),
 ]
