@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .forms import UserForm, LoginForm,ProfileShowForm, ProfileModifyForm, PasswordModifyForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse
+from .forms import UserForm, LoginForm, ProfileShowForm, PasswordModifyForm
+from .models import Profile
 
 # Create your views here.
 
@@ -48,12 +49,14 @@ def register(request):
         return render(request, "Login/register.html",{"form":form}) #'A'을 html에 B로 던지겠다
 
 #--------------------Profile----------------------
-def profileview(request,):
-    ...
+@login_required # 로그인 여부를 검사하여 접근을 통제할 수 있다. 단, 함수형 뷰일때만
+def profileview(request,myid):
+    infos = Profile.objects.all()
+    return render(request, "Profile/profile.html")
     
 
 #--------------------modify-----------------------프로필, 비밀번호
-
+@login_required 
 def passwordmodify(request): #미완성
      if request.method=="POST":
         form = LoginForm(request.POST)

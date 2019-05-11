@@ -6,7 +6,7 @@ from django.conf import settings
 
 class Profile(models.Model) :
     #myiamge = imagefield
-    myid = models.ForeignKey(settings.AUTH_USER_MODEL)
+    myid = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     #mypw = models.CharField(max_length = 20, blank = True)
     myname = models.CharField(max_length = 30, null = True, blank = True)
     myemail = models.CharField(max_length = 30, null = True, blank = True)
@@ -14,6 +14,6 @@ class Profile(models.Model) :
     introduction = models.CharField(max_length = 100, default = '안녕하세요!',blank = True)
     leaveparty = models.BooleanField(default = False); # 탈퇴용 boolean
 
-    def __str__(self):  #User의 대표적으로 보일 것을 지정하는 것
-        return self.myname;
+    def __str__(self):  #profile의 대표적으로 보일 것을 지정하는 것
+        return self.myid;
 
