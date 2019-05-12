@@ -1,11 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-</head>
-<body>
+﻿{% extends 'base.html' %}
+{% block fixed_nav%}
     <h3>home</h3>
 
     {% if data.is_authenticated %}
@@ -25,5 +19,4 @@
 	<a href='{% url 'register' %}'>회원가입</a>
     
     {% endif %}
-</body>
-</html>
+{% endblock %}
