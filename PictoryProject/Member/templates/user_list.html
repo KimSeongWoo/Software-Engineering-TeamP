@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="left"></div>
+        <div class="content">
+            <div class="gray user_list_follow">
+        팔로우할 만한 계정 둘러보기 
+    </div>
+     아이디로 표시
+    {% for user in users %}
+        <div class="user">
+            <div class="user_id">
+                
+            <a class="gray" href="{% url 'user_detail' user_pk=user.id %}">{{ user.username }}</a>
+            </div>
+            <div class="user_description">
+                {{user.description}}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div class="right">
+</body>
+</html>

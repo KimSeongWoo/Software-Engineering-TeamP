@@ -15,7 +15,7 @@ class Profile(models.Model) :
     leaveparty = models.BooleanField(default = False); # 탈퇴용 boolean
 
     def __str__(self):  #profile의 대표적으로 보일 것을 지정하는 것
-        return self.user_id;
+        return self.owner.username;
 
     class Meta:
         ordering = ['-owner_id'] #정렬 -면 반대

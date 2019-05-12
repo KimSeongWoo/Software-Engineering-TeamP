@@ -1,19 +1,19 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8" />
+    <title></title>
 </head>
 <body>
-    <h2>프로필 정보 : {{request.user.username}}</h2>
+    <h1>user_detail another</h1>
+        <h2>프로필 정보 : {{data.이름}}</h2>
     <ul>
         {% for key,value in data.items %}
         <li>{{key}} : {{value}}</li>
         {% endfor %}
     </ul>
-    
-    <a href='{% url 'profile_edit' %}'>프로필 편집</a>
+
     <a href='{% url 'user_list' %}'>다른 계정보기</a>
 </body>
 </html>
