@@ -1,10 +1,5 @@
-﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
+﻿{% extends 'base.html' %}
+{% block fixed_nav%}
 <body>
     <h1>user_detail another</h1>
         <h2>프로필 정보 : {{data.이름}}</h2>
@@ -16,4 +11,4 @@
 
     <a href='{% url 'user_list' %}'>다른 계정보기</a>
 </body>
-</html>
+{% endblock %}

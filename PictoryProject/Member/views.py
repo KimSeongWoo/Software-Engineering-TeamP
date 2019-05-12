@@ -24,8 +24,8 @@ def loginview(request):
         user = authenticate(username=name,password=pwd)
         if user is not None:
             login(request,user)
-            #return redirect("home")#시작페이지로 이동
-            return redirect("Posting/posting")
+            return redirect("home")#시작페이지로 이동
+            #return redirect("Posting/posting")
         else:
             return render(request,"Login/login_error.html")
     else: #GET방식이면 로그인 페이지로 이동

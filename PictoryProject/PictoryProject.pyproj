@@ -65,6 +65,8 @@
     <Folder Include="Member\templates\Login\" />
     <Folder Include="Member\templates\Edit\" />
     <Folder Include="Member\templates\Profile\" />
+    <Folder Include="base_templates\" />
+    <Folder Include="static\" />
     <Folder Include="PictoryProject\" />
     <Folder Include="Posting\" />
     <Folder Include="Posting\migrations\" />
@@ -72,8 +74,11 @@
     <Folder Include="Posting\templates\Posting\" />
     <Folder Include="Posting\templates\Posting\css\" />
     <Folder Include="Posting\templates\Posting\img\" />
+    <Folder Include="static\css\" />
+    <Folder Include="static\img\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="base_templates\base.html" />
     <Content Include="Member\templates\Login\home.html" />
     <Content Include="Member\templates\Login\login.html" />
     <Content Include="Member\templates\Login\login_error.html" />
@@ -93,6 +98,9 @@
     <Content Include="Posting\templates\Posting\My_posting_list.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
+    <Content Include="static\css\style.css" />
+    <Content Include="static\img\Satomi1.png" />
+    <Content Include="static\img\simpson1.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.html">

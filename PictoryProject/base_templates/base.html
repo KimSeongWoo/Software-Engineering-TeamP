@@ -5,8 +5,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Pictory Home Page</title>
+        <meta http-equiv="X-UA-Compatible" content="chrome">
+        <title>Pictory</title>
         <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Fjalla+One" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -16,7 +16,7 @@
     <body>
         <div class="nav_container">
             <div class="left">
-                <i id="pictory_icon" class="far fa-images"></i>
+                <a href="{% url 'home' %}"><i id="pictory_icon" class="far fa-images"></i></a>
                 <h2>Pictory</h2>
             </div>
             <div class="right">
@@ -39,5 +39,4 @@
             </div>
         </div>
     </body>
-
 </html>

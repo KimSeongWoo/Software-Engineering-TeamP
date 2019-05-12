@@ -1,10 +1,5 @@
-﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
+﻿{% extends 'base.html' %}
+{% block fixed_nav %}
 <body>
     <h2>프로필 수정</h2>
    <form action="" method="post">
@@ -13,6 +8,6 @@
 		{{ form.as_table }}
 	</table>
 	<input type="submit">
-</form>
+   </form>
 </body>
-</html>
+{%endblock%}
