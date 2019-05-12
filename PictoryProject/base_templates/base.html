@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+{%load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Pictory Home Page</title>
+        <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Fjalla+One" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="nav_container">
+            <div class="left">
+                <i id="pictory_icon" class="far fa-images"></i>
+                <h2>Pictory</h2>
+            </div>
+            <div class="right">
+                <i class="far fa-heart"></i>
+                <i class="far fa-user"></i>
+                <i class="fas fa-bookmark"></i>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main_left">
+                
+            </div>
+            <div class="main_right">
+                <div class="right_nav">
+                    <div id="fixed_nav">
+                        {% block fixed_nav %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
