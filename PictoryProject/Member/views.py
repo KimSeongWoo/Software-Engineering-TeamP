@@ -46,7 +46,7 @@ def register(request):
                 admin = User.objects.first()
                 Profile.objects.create(owner_id=admin.id)
             new_user = User.objects.create_user(**form.cleaned_data)
-            Profile.objects.create(owner_id=new_user.id, name = new_user.username)
+            Profile.objects.create(owner_id=new_user.id, name = new_user.username, photo='images/basic_image.jpg') #기본 프로필사진 설정
             login(request,new_user)
             return redirect("/")#시작페이지로 이동
         else:
@@ -65,7 +65,7 @@ def user_list(request):
 def myprofile(request):
     user=request.user
     profile = Profile.objects.get(owner_id = user.id)
-    data ={'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
+    data ={'사진':profile.photo,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
     return render(request, 'profile/myprofile.html', context={'data': data})
 
 @login_required
@@ -85,6 +85,7 @@ def profile_edit(request):
         if form.is_valid() :
             user=request.user
             new_profile = Profile.objects.get(owner_id = user.id)
+            new_profile.photo = request.FILES['photo']
             new_profile.name = form.cleaned_data['name']
             new_profile.email = form.cleaned_data['email']
             new_profile.phone = form.cleaned_data['phone']

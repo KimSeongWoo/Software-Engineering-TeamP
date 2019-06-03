@@ -1,13 +1,15 @@
 """
 Definition of urls for PictoryProject.
 """
-
 from datetime import datetime
 from django.conf.urls import url
+from django.urls import path,include
 import django.contrib.auth.views
 from django.contrib import admin
 import Posting.views as post
 import Member.views as member
+from django.conf import settings #settings.py에서 설정한 내용 불러옴
+from django.conf.urls.static import static  #urlpatterns 연결
 
 #from django.urls import path 2.0에서 추가된 기능
 #url(r'^sum/(?P<x>\d+)/$', views.mysum) : ()안에 d+가 부합한다면, x값을 view로 넘긴다
@@ -35,4 +37,4 @@ urlpatterns = [
 
     #---------------edit----------------
     url(r'^proflie/edit',member.profile_edit, name='profile_edit'),
-]
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

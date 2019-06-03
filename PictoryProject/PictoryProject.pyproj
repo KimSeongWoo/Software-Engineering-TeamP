@@ -59,6 +59,7 @@
     <Compile Include="Posting\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="media\images\" />
     <Folder Include="Member\" />
     <Folder Include="Member\migrations\" />
     <Folder Include="Member\templates\" />
@@ -66,6 +67,7 @@
     <Folder Include="Member\templates\Edit\" />
     <Folder Include="Member\templates\Profile\" />
     <Folder Include="base_templates\" />
+    <Folder Include="media\" />
     <Folder Include="static\" />
     <Folder Include="PictoryProject\" />
     <Folder Include="Posting\" />
@@ -99,6 +101,7 @@
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="static\css\style.css" />
+    <Content Include="static\img\basic_image.jpg" />
     <Content Include="static\img\Satomi1.png" />
     <Content Include="static\img\simpson1.gif" />
   </ItemGroup>

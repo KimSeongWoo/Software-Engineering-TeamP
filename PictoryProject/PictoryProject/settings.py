@@ -56,9 +56,13 @@ MIDDLEWARE_CLASSES = [
 ]"""
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'PictoryProject.urls'
@@ -135,4 +139,7 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static'),
 ]
 
+MEDIA_ROOT =os.path.join(BASE_DIR,'media')
+ 
+MEDIA_URL= '/media/'
 #STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))

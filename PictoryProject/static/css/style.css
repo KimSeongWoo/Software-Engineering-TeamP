@@ -1,4 +1,5 @@
 .nav_container {
+    margin-top: 0;
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -7,6 +8,7 @@
     background-color: aliceblue;
     align-items: flex-end;
     height: 4rem;
+    top:0;
 }
 
 .search {
@@ -32,7 +34,7 @@
     flex-direction: row;
     justify-content: center;
     border-top: 1px solid #5a5a5a;
-    padding-top: 50px;
+    margin-top: 3rem;
     height: 100vh;
     width: 100vw;
 }
@@ -81,7 +83,7 @@ i {
 
 h2 {
     display: inline;
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Nanum Pen Script', cursive;
 }
 
 body {

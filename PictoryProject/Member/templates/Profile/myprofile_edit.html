@@ -2,12 +2,22 @@
 {% block fixed_nav %}
 <body>
     <h2>프로필 수정</h2>
-   <form action="" method="post">
+   <form action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	<table>
-		{{ form.as_table }}
+		{#{ form.as_table }#}
+        <label for="photo">프로필 사진</label>
+        <input type="file" name="photo" id="photo" /><br />
+        <label for="name">이름</label>
+            <input type="text" name="name" id="name"><br>
+        <label for="email">이메일 주소</label>
+            <input type="text" name="email" id="email"><br>
+        <label for="phone">핸드폰 번호</label>
+            <input type="text" name="phone" id="phone"><br>
+        <label for="introduction">소개말</label>
+            <input type="text" name="introduction" id="introduction"><br>
 	</table>
-	<input type="submit">
+	<input type="submit" value="변경">
    </form>
 </body>
 {%endblock%}
