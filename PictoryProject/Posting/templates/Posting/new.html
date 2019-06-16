@@ -150,81 +150,41 @@ header img {
     <body>
         <div class="nav_container">
             <div class="left">
-                <i id="pictory_icon" class="far fa-images"></i>
+                <a href="{% url 'home' %}"><i id="pictory_icon" class="far fa-images"></i></a>
                 <h2>Pictory</h2>
             </div>
             <div class="right">
                 <i class="far fa-heart"></i>
-                <i class="far fa-user"></i>
+                <a href="{% url 'myprofile' %}"><i class="far fa-user"></i></a>
                 <i class="fas fa-bookmark"></i>
             </div>
         </div>
         <div class="main">
             <div class="main_left">
                 <section class="card_section">
-                    <div class="card">
-                        <header>
-                            <img src="img/Satomi1.png" alt="">
-                            <div class="user_name">Homer.J.Simpson</div>
-                        </header>
-                        <div class="card_image">
-                            <img src="img/simpson1.gif" alt="">
+                    <form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="Input_title">제목</label><br />
+                            <input type="text" name="title" class="form-control" id="Input_title" placeholder="Enter title"><br />
                         </div>
-                        <div class="info">
-                            <div class="info_left">
-                                <i class="far fa-heart"></i>
-                                <i class="far fa-comment"></i>
-                                <i class="fas fa-upload"></i>
-                            </div>
-                            <div class="info_right">
-                                <i class="far fa-bookmark"></i>
-                            </div>
+                        <div class="form-group">
+                            <label for="Input_image">사진</label><br />
+                            <input type="file" name="image" class="form-control" id="Input_image"><br />
                         </div>
-                        <div class="comment">
-                            Let your brain refresh every Momnts<br>
-                            comment2<br>
+                        <div class="form-group">
+                            <label for="Input_des">이야기</label><br />
+                            <textarea class="form-control" name="des" id="Input_des" rows="20"></textarea><br />
                         </div>
-                        <div class="comment_form">
-                            <form action=" ">
-                                <input type="text" placeholder="comment">
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <header>
-                            <img src="img/Satomi1.png" alt="">
-                            <div class="user_name">Homer.J.Simpson</div>
-                        </header>
-                        <div class="card_image">
-                            <img src="img/simpson1.gif" alt="">
-                        </div>
-                        <div class="info">
-                            <div class="info_left">
-                                <i class="far fa-heart"></i>
-                                <i class="far fa-comment"></i>
-                                <i class="fas fa-upload"></i>
-                            </div>
-                            <div class="info_right">
-                                <i class="far fa-bookmark"></i>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            D'oh!<br>
-                            comment2<br>
-                        </div>
-                        <div class="comment_form">
-                            <form action=" ">
-                                <input type="text" placeholder="comment">
-                            </form>
-                        </div>
-                    </div>
+                        <input type="hidden" name="user_id" value="{{user.id}}"> 
+                        <button type="submit" class="btn btn-warning">작성</button>
+                    </form>
                 </section>
             </div>
             <div class="main_right">
                 <div class="right_nav">
                     <div id="fixed_nav">
                         Here will be your profile info
-                        <a href="{% url 'new'%}">챕터 추가</a>
                     </div>
                 </div>
             </div>
