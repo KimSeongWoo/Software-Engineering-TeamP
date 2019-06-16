@@ -4,18 +4,19 @@
     <h2>프로필 수정</h2>
    <form action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
+
 	<table>
 		{#{ form.as_table }#}
         <label for="photo">프로필 사진</label>
-        <input type="file" name="photo" id="photo" /><br />
+        <input type="file" name="photo" id="photo" value="{{old.photo}}"><br />
         <label for="name">이름</label>
-            <input type="text" name="name" id="name"><br>
+            <input type="text" name="name" id="name" aria-label="이름" value="{{old.name}}"><br>
         <label for="email">이메일 주소</label>
-            <input type="text" name="email" id="email"><br>
+            <input type="text" name="email" id="email" aria-label="Email" value="{{old.email}}"><br>
         <label for="phone">핸드폰 번호</label>
-            <input type="text" name="phone" id="phone"><br>
+            <input type="text" name="phone" id="phone" aria-label="Phone Number" value="{{old.phone}}"><br>
         <label for="introduction">소개말</label>
-            <input type="text" name="introduction" id="introduction"><br>
+            <input type="text" name="introduction" id="introduction" aria-label="Introduction" value="{{old.introduction}}"><br>
 	</table>
 	<input type="submit" value="프로필 변경">
    

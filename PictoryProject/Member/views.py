@@ -91,12 +91,15 @@ def profile_edit(request):
             new_profile.phone = form.cleaned_data['phone']
             new_profile.introduction = form.cleaned_data['introduction']
             new_profile.save()
+
             return redirect("myprofile")
         else:
             return render(request,"profile/myprofile.html")
      else: #GET방식
         form = ProfileEditForm()
-        return render(request, "profile/myprofile_edit.html", {"form": form})
+        user=request.user
+        old_profile = Profile.objects.get(owner_id = user.id)
+        return render(request, "profile/myprofile_edit.html", context = {"form": form, "old" : old_profile})
 
 @login_required 
 def password_edit(request):
