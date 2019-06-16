@@ -12,6 +12,7 @@ class Profile(models.Model) :
     phone = models.CharField(max_length = 20, null = True, blank = True)
     introduction = models.CharField(max_length = 100, default = '안녕하세요!',blank = True)
     leaveparty = models.BooleanField(default = False) # 탈퇴용 boolean
+   # changed_password =  models.CharField(max_length = 20, null = True,blank = False)
 
     def __str__(self):  #profile의 대표적으로 보일 것을 지정하는 것
         return self.owner.username

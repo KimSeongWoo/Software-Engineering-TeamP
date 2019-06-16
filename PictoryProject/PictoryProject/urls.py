@@ -37,5 +37,7 @@ urlpatterns = [
     url(r'^(?P<user_pk>[a-zA-Z0-9]+)/profile',member.user_detail, name='user_detail'),
     
     #---------------edit----------------
-    url(r'^proflie/edit',member.profile_edit, name='profile_edit'),
+    url(r'^my_profile/edit',member.profile_edit, name='profile_edit'),
+    url(r'^my_profile/password_edit',member.password_edit, name='password_edit'),
+   #url(r'^my_profile/password_edit/error',member.password_edit, name='password_edit_error'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

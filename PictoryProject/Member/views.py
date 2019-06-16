@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm, LoginForm, ProfileShowForm, ProfileEditForm, PasswordeditForm
+from .forms import UserForm, LoginForm, ProfileShowForm, ProfileEditForm, PasswordEditForm
 from .models import Profile
 
 # Create your views here.
@@ -98,4 +98,19 @@ def profile_edit(request):
         form = ProfileEditForm()
         return render(request, "profile/myprofile_edit.html", {"form": form})
 
+@login_required 
+def password_edit(request):
+     if request.method=="POST":
+        form = PasswordEditForm(request.POST)
+        user=request.user
+        if form.is_valid() :
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            logout(request)
+            return redirect("home")
+        else:
+            return render(request,"profile/password_edit_error.html")
+     else: #GET방식
+        form = PasswordEditForm()
+        return render(request, "profile/password_edit.html", {"form": form})
 

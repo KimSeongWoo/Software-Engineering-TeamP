@@ -6,6 +6,7 @@
     <RootNamespace>PictoryProject</RootNamespace>
     <InterpreterId>
     </InterpreterId>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -64,7 +65,6 @@
     <Folder Include="Member\migrations\" />
     <Folder Include="Member\templates\" />
     <Folder Include="Member\templates\Login\" />
-    <Folder Include="Member\templates\Edit\" />
     <Folder Include="Member\templates\Profile\" />
     <Folder Include="base_templates\" />
     <Folder Include="media\" />
@@ -85,11 +85,10 @@
     <Content Include="Member\templates\Login\login.html" />
     <Content Include="Member\templates\Login\login_error.html" />
     <Content Include="Member\templates\Login\logout.html" />
-    <Content Include="Member\templates\Edit\myprofile_edit.html" />
-    <Content Include="Member\templates\Edit\password_edit.html" />
+    <Content Include="Member\templates\Profile\password_edit.html" />
     <Content Include="Member\templates\Login\register.html" />
     <Content Include="Member\templates\Login\register_error.html" />
-    <Content Include="Member\templates\Edit\password_edit_error.html" />
+    <Content Include="Member\templates\Profile\password_edit_error.html" />
     <Content Include="Member\templates\Profile\myprofile.html" />
     <Content Include="Member\templates\Profile\myprofile_edit.html" />
     <Content Include="Member\templates\user_detail.html" />
