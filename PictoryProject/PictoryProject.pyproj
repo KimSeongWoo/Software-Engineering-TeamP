@@ -98,6 +98,7 @@
     <Content Include="Posting\templates\Posting\img\Satomi1.png" />
     <Content Include="Posting\templates\Posting\img\simpson1.gif" />
     <Content Include="Posting\templates\Posting\My_posting_list.html" />
+    <Content Include="Posting\templates\Posting\new.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="static\css\style.css" />

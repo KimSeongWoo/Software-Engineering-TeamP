@@ -10,13 +10,14 @@
         {% endfor %}
     </ul>
   
-    <a href="/logout">로그아웃</a>
-    <a href='{% url 'myprofile' %}'>내 프로필</a>
+    <a style="color: darkorange" href="/logout">로그아웃</a>
+    <a style="color: darkorange" href='{% url 'myprofile' %}'>내 프로필</a>
+    <a style="color: darkorange" href='{% url 'posting' %}'>내 픽토리</a>
 
     {% else %}
     <h2>Log in to navigate other people's Pictories!</h2><br /><br />
-    <a href='{% url 'login' %}'>로그인</a><br />
-	<a href='{% url 'register' %}'>회원가입</a>
+    <a style="color: darkorange" href='{% url 'login' %}'>로그인</a><br />
+	<a style="color: darkorange" href='{% url 'register' %}'>회원가입</a>
     
     {% endif %}
 {% endblock %}

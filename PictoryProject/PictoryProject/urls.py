@@ -27,14 +27,14 @@ urlpatterns = [
     url(r'^logout/',member.logoutview,name = 'logout'),
    
     #--------------posting----------------
-    url(r'^posting',post.posting,name="posting"),
+    url(r'^posting/',post.posting,name='posting'),
+    url(r'^new/',post.new,name='new'),
 
     #--------------profile----------------
     url(r'^my_profile/profile',member.myprofile, name='myprofile'),
-    url(r'^user_list/', member.user_list, name="user_list"),
+    url(r'^user_list/', member.user_list, name="user_list"),   
     url(r'^(?P<user_pk>[a-zA-Z0-9]+)/profile',member.user_detail, name='user_detail'),
     
-
     #---------------edit----------------
     url(r'^proflie/edit',member.profile_edit, name='profile_edit'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
