@@ -171,8 +171,9 @@ header img {
                     {% for post in postings.all %}
                     <div class="card">
                         <header>
-                            <img src="img/Satomi1.png" alt="">
-                            <div class="user_name">Homer.J.Simpson</div>
+                            <img src="{{profile.photo.url}}" alt="">  <!--현재 유저의 profile가져와서 프로필썸네일-->
+                            <!--img src="img/Satomi1.png" alt=""-->
+                            <div class="user_name">{{user.username}}</div> <!--현재 유저의 username-->
                         </header>
                         <div>
                             <h4>{{post.title}}</h4>
@@ -190,6 +191,8 @@ header img {
                                 <i class="fas fa-upload"></i>
                             </div>
                             <div class="info_right">
+                                <a href="{% url 'edit_post' post.id %}"><i class="far fa-edit"></i></a>
+                                <a href="{% url 'delete_post' post.id %}"><i class="fas fa-trash-alt"></i></a>
                                 <i class="far fa-bookmark"></i>
                             </div>
                         </div>
