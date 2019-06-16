@@ -7,8 +7,9 @@
 
 	<table>
 		{#{ form.as_table }#}
-        <label for="photo">프로필 사진</label>
-        <input type="file" name="photo" id="photo" value="{{old.photo}}"><br />
+        <label for="photo">프로필 사진</label><br />
+        <img src="{{old.photo.url}}" alt="Profile Image" width="150" height="150"/><br />
+        <input type="file" name="photo" id="photo"><br />
         <label for="name">이름</label>
             <input type="text" name="name" id="name" aria-label="이름" value="{{old.name}}"><br>
         <label for="email">이메일 주소</label>

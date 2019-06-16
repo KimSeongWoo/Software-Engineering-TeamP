@@ -85,7 +85,8 @@ def profile_edit(request):
         if form.is_valid() :
             user=request.user
             new_profile = Profile.objects.get(owner_id = user.id)
-            new_profile.photo = request.FILES['photo']
+            if(request.POST.get('photo')!=''):
+                new_profile.photo=request.FILES['photo']
             new_profile.name = form.cleaned_data['name']
             new_profile.email = form.cleaned_data['email']
             new_profile.phone = form.cleaned_data['phone']
