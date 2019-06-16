@@ -29,6 +29,7 @@ urlpatterns = [
     #--------------posting----------------
     url(r'^posting/',post.posting,name='posting'),
     url(r'^new/',post.new,name='new'),
+    url(r'create/',post.create,name='create'),
 
     #--------------profile----------------
     url(r'^my_profile/profile',member.myprofile, name='myprofile'),

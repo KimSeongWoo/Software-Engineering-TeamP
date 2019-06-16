@@ -54,7 +54,8 @@
     border: 1px solid #5a5a5a;
     background-color: white;
     width: 600px;
-    height: 600px;
+    height: 800px;
+
 }
 
 .comment {
@@ -102,6 +103,10 @@ h2 {
     font-family: 'Gloria Hallelujah', cursive;
 }
 
+span {
+    display: block;
+}
+
 body {
     margin: 0;
 }
@@ -114,6 +119,7 @@ header img {
 }
 
 .card_image img {
+    height: 60vh;
     width: 100%;
 }
 
@@ -150,53 +156,32 @@ header img {
     <body>
         <div class="nav_container">
             <div class="left">
-                <i id="pictory_icon" class="far fa-images"></i>
+                <a href="{% url 'home' %}"><i id="pictory_icon" class="far fa-images"></i></a>
                 <h2>Pictory</h2>
             </div>
             <div class="right">
                 <i class="far fa-heart"></i>
-                <i class="far fa-user"></i>
+                <a href="{% url 'myprofile' %}"><i class="far fa-user"></i></a>
                 <i class="fas fa-bookmark"></i>
             </div>
         </div>
         <div class="main">
             <div class="main_left">
                 <section class="card_section">
+                    {% for post in postings.all %}
                     <div class="card">
                         <header>
                             <img src="img/Satomi1.png" alt="">
                             <div class="user_name">Homer.J.Simpson</div>
                         </header>
+                        <div>
+                            <h4>{{post.title}}</h4>
+                        </div>
                         <div class="card_image">
-                            <img src="img/simpson1.gif" alt="">
+                            <img src="{{post.image.url}}" alt="">
                         </div>
-                        <div class="info">
-                            <div class="info_left">
-                                <i class="far fa-heart"></i>
-                                <i class="far fa-comment"></i>
-                                <i class="fas fa-upload"></i>
-                            </div>
-                            <div class="info_right">
-                                <i class="far fa-bookmark"></i>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            Let your brain refresh every Momnts<br>
-                            comment2<br>
-                        </div>
-                        <div class="comment_form">
-                            <form action=" ">
-                                <input type="text" placeholder="comment">
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <header>
-                            <img src="img/Satomi1.png" alt="">
-                            <div class="user_name">Homer.J.Simpson</div>
-                        </header>
-                        <div class="card_image">
-                            <img src="img/simpson1.gif" alt="">
+                        <div class="description">
+                            <span>{{post.description}}</span>
                         </div>
                         <div class="info">
                             <div class="info_left">
@@ -218,6 +203,7 @@ header img {
                             </form>
                         </div>
                     </div>
+                    {% endfor %}
                 </section>
             </div>
             <div class="main_right">
