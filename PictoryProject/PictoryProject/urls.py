@@ -47,6 +47,7 @@ urlpatterns = [
     #--------------profile----------------
     #url(r'^my_profile/profile',member.myprofile, name='myprofile'),
     path('my_profile/profile/',member.myprofile,name='myprofile'),
+    path('my_profile/profile/follow_list', member.myfollow_list_view, name = 'myfollow_list'),
     #url(r'^user_list/', member.user_list, name="user_list"),
     path('user_list/',member.user_list,name='user_list'),
     #url(r'^(?P<user_pk>[a-zA-Z0-9]+)/profile',member.user_detail, name='user_detail'),
@@ -62,4 +63,6 @@ urlpatterns = [
     #---------------follow---------------
     path('user_list/<user_pk>/follow',member.follow_this_account,name='follow_acc'),
     path('user_list/<user_pk>/follow_del',member.dont_follow,name='del_follow'),
+
+
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -136,7 +136,7 @@ def dont_follow(request,user_pk) :
 def myfollow_list_view(request) :
     user = request.user
     userprofile = Profile.objects.get(owner_id = user.id)
-    myfollowing = userprofile.following.filter(from_profile_id = userprofile.id)
+    myfollowing = userprofile.filter(following = userprofile.id)
     myfollowers = userprofile.followers.filter(from_profile_id = userprofile.id)
     context = {'followers': followers, 'followings' : myfollowing,}
     return render(request, 'myfollow_list.html', context)
