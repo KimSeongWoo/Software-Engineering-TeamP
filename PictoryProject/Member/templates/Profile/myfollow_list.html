@@ -1,0 +1,36 @@
+﻿{% extends 'base.html'%}
+{% block fixed_nav %}
+
+<body>
+    <div class="left"></div>
+        <div class="content">
+            <div class="gray user_list_follow">
+    </div>
+    내 팔로잉
+    {% for following in users %}
+        <div class="followings">
+            <div class="user_id">
+                
+            <a class="gray" href="{% url 'user_detail' user_pk=user.id %}">{{ user.username }}</a>
+            </div>
+            <div class="user_description">
+                {{user.description}}
+            </div>
+        </div>
+    {% endfor %}
+ 
+    내 팔로워들
+    {% for user in users %}
+        <div class="user">
+            <div class="user_id">
+                
+            <a class="gray" href="{% url 'user_detail' user_pk=user.id %}">{{ user.username }}</a>
+            </div>
+            <div class="user_description">
+                {{user.description}}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+{% endblock %}

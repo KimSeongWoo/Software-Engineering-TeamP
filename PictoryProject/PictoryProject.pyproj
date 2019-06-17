@@ -68,6 +68,7 @@
     <Folder Include="Member\templates\Profile\" />
     <Folder Include="base_templates\" />
     <Folder Include="media\" />
+    <Folder Include="Member\templates\OthersProfile\" />
     <Folder Include="static\" />
     <Folder Include="PictoryProject\" />
     <Folder Include="Posting\" />
@@ -85,13 +86,14 @@
     <Content Include="Member\templates\Login\login.html" />
     <Content Include="Member\templates\Login\login_error.html" />
     <Content Include="Member\templates\Login\logout.html" />
+    <Content Include="Member\templates\Profile\myfollow_list.html" />
     <Content Include="Member\templates\Profile\password_edit.html" />
     <Content Include="Member\templates\Login\register.html" />
     <Content Include="Member\templates\Login\register_error.html" />
     <Content Include="Member\templates\Profile\password_edit_error.html" />
     <Content Include="Member\templates\Profile\myprofile.html" />
     <Content Include="Member\templates\Profile\myprofile_edit.html" />
-    <Content Include="Member\templates\user_detail.html" />
+    <Content Include="Member\templates\OthersProfile\user_detail.html" />
     <Content Include="Member\templates\user_list.html" />
     <Content Include="Posting\templates\Posting\css\My_posting_list.css" />
     <Content Include="Posting\templates\Posting\edit.html" />
