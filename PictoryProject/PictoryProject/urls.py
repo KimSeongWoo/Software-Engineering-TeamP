@@ -35,10 +35,18 @@ urlpatterns = [
 
     #--------------profile----------------
     path('my_profile/profile/',member.myprofile,name='myprofile'),
-    path('my_profile/user_list/',member.user_list,name='user_list'),
-    path('my_profile/profile/<profile_id>',member.user_detail,name='user_detail'),
+    path('my_profile/profile/follow_list', member.myfollow_list_view, name = 'myfollow_list'),
+    path('user_list/',member.user_list,name='user_list'),
+    path('user_list/<user_pk>/profile',member.user_detail,name='user_detail'),
     
     #---------------edit----------------
     path('my_profile/edit/',member.profile_edit,name='profile_edit'),
     path('my_profile/password_edit/',member.password_edit,name='password_edit'),
+    #url(r'^my_profile/password_edit/error',member.password_edit, name='password_edit_error'),
+
+    #---------------follow---------------
+    path('user_list/<user_pk>/follow',member.follow_this_account,name='follow_acc'),
+    path('user_list/<user_pk>/follow_del',member.dont_follow,name='del_follow'),
+
+
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
