@@ -3,12 +3,10 @@
     <h3>Pictory</h3>
 
     {% if data.is_authenticated %}
-    <h2>로그인 정보</h2>
-    <ul>
-        {% for key,value in data.items %}
-        <li>{{key}} : {{value}}</li>
-        {% endfor %}
-    </ul>
+    <div class="photo" style="width: 18rem;">
+        <img src="{{ profile.photo.url }}" class="profile-img" alt="..." width="200" height="150">
+        </div><br />
+    <h2 id="welcome">{{profile.name}} 님 안녕하세요!</h2><br /><br />
   
     <a style="color: darkorange" href="/logout">로그아웃</a>
     <a style="color: darkorange" href='{% url 'myprofile' %}'>내 프로필</a>

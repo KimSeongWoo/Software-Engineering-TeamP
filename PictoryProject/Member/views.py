@@ -9,11 +9,13 @@ from .models import Profile
 # Create your views here.
 
 def home(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated: 
         data ={'username': request.user,'is_authenticated': request.user.is_authenticated}
-    else:
+        return render(request, 'Login/home.html', context={'data': data})
+    else:  #여기서 프로필 보여주는걸로
         data ={'username': request.user.username,'password':request.user.password,'is_authenticated': request.user.is_authenticated}
-    return render(request, 'Login/home.html', context={'data': data})
+        profile=Profile.objects.get(owner_id=request.user.id)
+        return render(request, 'Login/home.html', context={'data': data, 'profile':profile})
 
 def loginview(request):
     if request.method=="POST":

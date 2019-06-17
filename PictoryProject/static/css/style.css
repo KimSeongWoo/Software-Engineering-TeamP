@@ -133,3 +133,8 @@ header img {
 ::-webkit-scrollbar {
     display: none;
 }
+
+#profile_info {
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 1.5rem;
+}

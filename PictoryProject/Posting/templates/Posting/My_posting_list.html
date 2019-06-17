@@ -58,6 +58,17 @@
 
 }
 
+.profile_left{
+    border: 1px solid #5a5a5a;
+    background-color: white;
+    width:400px;
+    height: 300px;
+}
+
+.profile_left img{
+    border-radius: 30%;
+}
+
 .comment {
     margin: 0rem 1rem 1rem 1rem;
     border-bottom: 1px solid #efefef;
@@ -150,6 +161,11 @@ header img {
 ::-webkit-scrollbar {
     display: none;
 }
+
+#profile_left{
+    font-size:1rem;
+    font-family: 'Fjalla One', sans-serif;
+}
         </style>
     </head>
 
@@ -212,7 +228,17 @@ header img {
             <div class="main_right">
                 <div class="right_nav">
                     <div id="fixed_nav">
-                        Here will be your profile info<br />
+                        <div class="profile_left">
+                        <div class="photo" style="width: 18rem;">
+        <img src="{{ profile.photo.url }}" class="profile-img" alt="..." width="150" height="100">
+        </div>
+                            <div>
+                                <h3 id="profile_left">{{user.username}}</h3>
+                                <h3 id="profile_left">{{profile.name}}</h3>
+                                <h3 id="profile_left">{{profile.introduction}}</h3>
+                            </div>
+                            </div>
+                        <br />
                         <a href="{% url 'new'%}" style="text-decoration:none">챕터 추가</a>
                     </div>
                 </div>

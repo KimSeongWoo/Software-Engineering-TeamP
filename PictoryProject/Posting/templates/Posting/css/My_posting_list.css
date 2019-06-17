@@ -113,6 +113,10 @@ header img {
     border-radius: 3px;
 }
 
+#profile_info {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
 .main_right {
     margin: 1rem;
     overflow: auto;
