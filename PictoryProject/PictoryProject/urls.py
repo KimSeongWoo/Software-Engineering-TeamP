@@ -48,14 +48,18 @@ urlpatterns = [
     #url(r'^my_profile/profile',member.myprofile, name='myprofile'),
     path('my_profile/profile/',member.myprofile,name='myprofile'),
     #url(r'^user_list/', member.user_list, name="user_list"),
-    path('my_profile/user_list/',member.user_list,name='user_list'),
+    path('user_list/',member.user_list,name='user_list'),
     #url(r'^(?P<user_pk>[a-zA-Z0-9]+)/profile',member.user_detail, name='user_detail'),
-    path('my_profile/profile/<user_pk>',member.user_detail,name='user_detail'),
+    path('user_list/<user_pk>/profile',member.user_detail,name='user_detail'),
     
     #---------------edit----------------
     #url(r'^my_profile/edit',member.profile_edit, name='profile_edit'),
     path('my_profile/edit/',member.profile_edit,name='profile_edit'),
     #url(r'^my_profile/password_edit',member.password_edit, name='password_edit'),
     path('my_profile/password_edit/',member.password_edit,name='password_edit'),
-   #url(r'^my_profile/password_edit/error',member.password_edit, name='password_edit_error'),
+    #url(r'^my_profile/password_edit/error',member.password_edit, name='password_edit_error'),
+
+    #---------------follow---------------
+    path('user_list/<user_pk>/follow',member.follow_this_account,name='follow_acc'),
+    path('user_list/<user_pk>/follow_del',member.dont_follow,name='del_follow'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

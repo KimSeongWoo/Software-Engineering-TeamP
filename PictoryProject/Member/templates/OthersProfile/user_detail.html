@@ -10,5 +10,7 @@
     </ul>
 
     <a href='{% url 'user_list' %}'>다른 계정보기</a>
+    <a href='{% url 'follow_acc' user_pk=data.owner%}'>팔로우하기</a>
+    <a href='{% url 'del_follow' user_pk=data.owner%}'>팔로우취소</a>
 </body>
 {% endblock %}
