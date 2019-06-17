@@ -58,9 +58,10 @@ def register(request):
         return render(request, "Login/register.html",{"form":form}) #'A'을 html에 B로 던지겠다
 
 def user_list(request):
-    users = User.objects.all()
-    context = {'users': users,}
-    return render(request, 'user_list.html', context)
+    #users = User.objects.all()
+    #context = {'users': users,}
+    profiles=Profile.objects.all()
+    return render(request, 'user_list.html', context={'profiles':profiles})
 
 #--------------------Profile----------------------
 @login_required # 로그인 여부를 검사하여 접근을 통제할 수 있다. 단, 함수형 뷰일때만
@@ -71,11 +72,11 @@ def myprofile(request):
     return render(request, 'profile/myprofile.html', context={'data': data})
 
 @login_required
-def user_detail(request, user_pk):
-    user = get_object_or_404(User, pk=user_pk)
-    profile = Profile.objects.get(owner_id = user.id)
+def user_detail(request, profile_id):
+    #user = get_object_or_404(User, pk=user_pk)
+    profile = Profile.objects.get(id = profile_id)
     #posts = Post.objects.filter(owner=user)
-    data ={'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
+    data ={'사진':profile.photo,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
     return render(request, 'user_detail.html', context={'data': data})
 
     
@@ -99,6 +100,7 @@ def profile_edit(request):
         else:
             return render(request,"profile/myprofile.html")
      else: #GET방식
+
         form = ProfileEditForm()
         user=request.user
         old_profile = Profile.objects.get(owner_id = user.id)
