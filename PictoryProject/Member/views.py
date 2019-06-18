@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, LoginForm, ProfileShowForm, ProfileEditForm, PasswordEditForm
-from .models import Profile
+from .models import Profile,Following,Follower
 
 
 # Create your views here.
@@ -116,9 +116,22 @@ def follow_this_account(request,profile_id):
     #user = get_object_or_404(User, pk=user_pk) #대상의 유저
     userprofile = Profile.objects.get(id = profile_id)
     #afollow = request.user #팔로우 하는 자신
-    myprofile = Profile.objects.get(owner_id = request.user.id) # 내프로필에서
-    myprofile.following.add(userprofile)#내가 팔로우 하는 사람으로 추가하고
-    userprofile.followers.add(myprofile)#대상의 유저 follower에 나를 추가한다.
+    #myprofile = Profile.objects.get(owner_id = request.user.id) # 내프로필에서
+    #myprofile.following.add(userprofile)#내가 팔로우 하는 사람으로 추가하고
+    #userprofile.followers.add(myprofile)#대상의 유저 follower에 나를 추가한다.
+    following=Following()  
+    #afollow.owner=get_object_or_404(User,pk=request.POST.get('user_id',False))
+    
+    following.owner=request.user 
+    following.following_profile=userprofile
+    following.save()
+
+    thisuserprofile=Profile.objects.get(owner_id=request.user.id)
+    follower=Follower()
+    follower.owner=User.objects.get(id=userprofile.owner_id)
+    follower.follower_profile=thisuserprofile
+    follower.save()
+    #return redirect('user_detail')
     return redirect('user_detail', profile_id)
 
 #팔로우를 이미 했을 때를 검사해줘야 html내
@@ -126,9 +139,15 @@ def dont_follow(request,profile_id) :
     #user = get_object_or_404(User, pk=user_pk) #대상의 유저
     userprofile = Profile.objects.get(id=profile_id)
     #afollow = request.user #팔로우 하는 자신
-    myprofile = Profile.objects.get(owner_id = request.user.id) # 내프로필에서
-    userprofile.followers.remove(myprofile)#대상의 유저 follower에 나를 제거한다.
-    myprofile.followers.remove(userprofile)#내가 팔로우 하는 사람으로 제거하고
+    #myprofile = Profile.objects.get(owner_id = request.user.id) # 내프로필에서
+    #userprofile.followers.remove(myprofile)#대상의 유저 follower에 나를 제거한다.
+    #myprofile.followers.remove(userprofile)#내가 팔로우 하는 사람으로 제거하고
+    following=Following.objects.get(owner=request.user,following_profile=userprofile)
+    following.delete()
+
+    thisuserprofile=Profile.objects.get(owner_id=request.user.id)
+    follower=Follower.objects.get(owner=userprofile.owner_id,follower_profile=thisuserprofile)
+    follower.delete()
 
     #대상의 유저 follower에 나를 제거한다.
     return redirect('user_detail', profile_id)
@@ -136,9 +155,13 @@ def dont_follow(request,profile_id) :
 def myfollow_list_view(request) :
     user = request.user
     userprofile = Profile.objects.get(owner_id = user.id)
-    myfollowing = Profile.following.filter(from_profile_id = userprofile.id)
-    myfollowers = userprofile.followers.all()
-    context = {'followers': myfollowers, 'followings' : myfollowing,}
+    #myfollowing = Profile.following.filter(from_profile_id = userprofile.id)
+    #myfollowers = userprofile.followers.all()
+    #myfollowing=Profile_following.filter(from_profile_id=userprofile.id)
+    #myfollowers=Profile_followers.all()
+    myfollowings=Following.objects.filter(owner=request.user)
+    myfollowers=Follower.objects.filter(owner=request.user)
+    context = {'followers': myfollowers, 'followings' : myfollowings}
     return render(request, 'Profile/myfollow_list.html', context)
 
 #-----------------------------------------Others-------------------------------------------------------------타인에게 접속용
