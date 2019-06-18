@@ -21,3 +21,7 @@ class Profile(models.Model) :
 
     class Meta:
         ordering = ['-owner_id'] #정렬 -면 반대
+
+
+
+

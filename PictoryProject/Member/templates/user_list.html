@@ -13,9 +13,7 @@
                 
             <a class="gray" href="{% url 'user_detail' user_pk=user.id %}">{{ user.username }}</a>
             </div>
-            <div class="user_description">
-                {{user.description}}
-            </div>
+
         </div>
     {% endfor %}
 </div>

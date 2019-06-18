@@ -7,28 +7,24 @@
             <div class="gray user_list_follow">
     </div>
     내 팔로잉
-    {% for following in users %}
+    {% for following in name %}
         <div class="followings">
-            <div class="user_id">
+            <div class="followings_id">
                 
-            <a class="gray" href="{% url 'user_detail' user_pk=user.id %}">{{ user.username }}</a>
+            <a class="gray" href="{% url 'user_detail' user_pk=following.owner_id %}">{{ following.name}}</a>
             </div>
-            <div class="user_description">
-                {{user.description}}
-            </div>
+
         </div>
     {% endfor %}
  
     내 팔로워들
-    {% for user in users %}
-        <div class="user">
-            <div class="user_id">
+   {% for followers in name %}
+        <div class="followers">
+            <div class="followers_id">
                 
-            <a class="gray" href="{% url 'user_detail' user_pk=user.id %}">{{ user.username }}</a>
+            <a class="gray" href="{% url 'user_detail' user_pk=followers.owner_id %}">{{ followers.name }}</a>
             </div>
-            <div class="user_description">
-                {{user.description}}
-            </div>
+
         </div>
     {% endfor %}
 </div>

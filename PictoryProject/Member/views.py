@@ -136,10 +136,10 @@ def dont_follow(request,user_pk) :
 def myfollow_list_view(request) :
     user = request.user
     userprofile = Profile.objects.get(owner_id = user.id)
-    myfollowing = userprofile.filter(following = userprofile.id)
-    myfollowers = userprofile.followers.filter(from_profile_id = userprofile.id)
-    context = {'followers': followers, 'followings' : myfollowing,}
-    return render(request, 'myfollow_list.html', context)
+    myfollowing = Profile.following.filter(from_profile_id = userprofile.id)
+    myfollowers = userprofile.followers.all()
+    context = {'followers': myfollowers, 'followings' : myfollowing,}
+    return render(request, 'Profile/myfollow_list.html', context)
 
 #-----------------------------------------Others-------------------------------------------------------------타인에게 접속용
 
@@ -153,7 +153,7 @@ def user_detail(request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
     profile = Profile.objects.get(owner_id = user.id)
     data ={'owner':profile.owner_id,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
-    return render(request, 'OthersProfile.user_detail.html', context={'data': data})
+    return render(request, 'OthersProfile/user_detail.html', context={'data': data})
 
 @login_required
 def userfollow_list_view(request,user_pk) :
@@ -164,4 +164,4 @@ def user_detail_posts  (request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
     profile = Profile.objects.get(owner_id = user.id)
     data ={'owner':profile.owner_id,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
-    return render(request, 'OthersProfile.user_detail_posts.html', context={'data': data})
+    return render(request, 'OthersProfile/user_detail_posts.html', context={'data': data})
