@@ -216,6 +216,11 @@ header img {
 
                             D'oh!<br>
                             comment2<br>
+                            {%for comment in all_comment%}
+                                {%if post.id == comment.post_id%}
+                                    {{post.user_id}} : {{comment.body}} <a href ="{%url 'comment_update' comment.id%}">변경</a> <a href ="{%url 'comment_delete' comment.id%}">삭제</a><br>   
+                                {%endif%}
+                            {%endfor%}
                         </div>
                          <form action="{% url 'comment_create' post.id%}" method="post" enctype="multipart/form-data">  {% csrf_token %}
                               <div class="comment_form">
