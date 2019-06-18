@@ -59,16 +59,7 @@ def register(request):
         form = UserForm()
         return render(request, "Login/register.html",{"form":form}) #'A'을 html에 B로 던지겠다
 
-
-def user_list(request):
-    #users = User.objects.all()
-    #context = {'users': users,}
-    profiles=Profile.objects.all()
-    return render(request, 'user_list.html', context={'profiles':profiles})
-
-
 #--------------------MY-----------------------------------------------------------------------------------------------------------나 관리용
-
 #--------------------Profile----------------------
 @login_required # 로그인 여부를 검사하여 접근을 통제할 수 있다. 단, 함수형 뷰일때만
 def myprofile(request):
@@ -77,22 +68,10 @@ def myprofile(request):
     data ={'사진':profile.photo,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
     return render(request, 'profile/myprofile.html', context={'data': data})
     
-
-@login_required
-def user_detail(request, profile_id):
-    #user = get_object_or_404(User, pk=user_pk)
-    profile = Profile.objects.get(id = profile_id)
-    #posts = Post.objects.filter(owner=user)
-    data ={'사진':profile.photo,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
-    return render(request, 'user_detail.html', context={'data': data})
-
-
-
-    
 #--------------------edit-----------------------프로필, 비밀번호
 @login_required 
 def profile_edit(request):
-    if request.method=="POST":
+     if request.method=="POST":
         form = ProfileEditForm(request.POST)
         if form.is_valid() :
             user=request.user
@@ -108,8 +87,7 @@ def profile_edit(request):
             return redirect("myprofile")
         else:
             return render(request,"profile/myprofile.html")
-    else: #GET방식
-
+     else: #GET방식
         form = ProfileEditForm()
         user=request.user
         old_profile = Profile.objects.get(owner_id = user.id)
@@ -117,7 +95,7 @@ def profile_edit(request):
 
 @login_required 
 def password_edit(request):
-    if request.method=="POST":
+     if request.method=="POST":
         form = PasswordEditForm(request.POST)
         user=request.user
         if form.is_valid() :
@@ -127,7 +105,7 @@ def password_edit(request):
             return redirect("home")
         else:
             return render(request,"profile/password_edit_error.html")
-    else: #GET방식
+     else: #GET방식
         form = PasswordEditForm()
         return render(request, "profile/password_edit.html", {"form": form})
 
