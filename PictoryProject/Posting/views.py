@@ -23,6 +23,10 @@ def new(request):
 
 def create(request):
     post = Post()
+    if request.POST.get('image') == '':
+        return redirect("new")
+    elif request.POST['title'] =='' :
+        return redirect("new")
     post.title = request.POST.get('title',False)
     post.description = request.POST.get('des',False)
     post.pub_date = timezone.datetime.now()
@@ -31,8 +35,7 @@ def create(request):
     post.TMP=0
     post.user=get_object_or_404(User,pk=request.POST.get('user_id',False))
     post.save()
-
-    return redirect('/posting/')
+    return redirect("posting")
 
 def delete(request, post_id):
     post=get_object_or_404(Post, pk=post_id)
