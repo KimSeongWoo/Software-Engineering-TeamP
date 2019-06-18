@@ -13,7 +13,9 @@ def posting(request):
     postings=Post.objects.filter(user_id=request.user.id).order_by('-pub_date') #현재 유저의 포스팅만 가져오기
     #postings=Post.objects.all().order_by('-pub_date')  #이건 타임라인에서 쓸 것
     profile=Profile.objects.get(owner_id=request.user.id)
-    return render(request, 'Posting/My_posting_list.html',{'postings':postings, 'profile':profile}) #dictionary 여러개 보내는 거 되나? 하나안엔 되네
+    comment = Comment()
+    comment = Comment.objects.filter(post_id =profile.id)
+    return render(request, 'Posting/My_posting_list.html',{'postings':postings, 'profile':profile,'cur_comment':comment}) #dictionary 여러개 보내는 거 되나? 하나안엔 되네
 
 def new(request):
     return render(request,'Posting/new.html')
@@ -52,3 +54,22 @@ def update(request,post_id):
     post.save()
 
     return redirect('/posting/')
+
+
+#--------------------------comment-------------------------------------//대화형식으로 만들어보자
+def comment_create(request,post_pk):
+    #cur_post = get_object_or_404(Post, id = post_pk )
+    new_comment = Comment()
+    new_comment.body = request.POST['body']
+    new_comment.cup_date = timezone.datetime.now()
+    new_commnet.post =  Post.objects.get(id = post_pk)
+    new_comment.save() 
+    return redirect("posting")
+
+def comment_update(reqeust,comment_pk) :
+    ...
+
+def comment_delete(reqeust,comment_pk):
+    Comment.objects.remove(id = comment_pk)
+    return redirect()
+    #cur_comment = get_object_or_404(Comment,id = comment_pk)
