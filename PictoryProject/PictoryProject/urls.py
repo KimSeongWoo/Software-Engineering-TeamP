@@ -20,7 +20,6 @@ urlpatterns = [
 
     #-------------Regist, login, logout------------
 
-	#url(r'^$',member.home, name ='home'),
     path('',member.home,name='home'),
     path('register/',member.register,name='register'),
     path('login/',member.loginview,name='login'),
@@ -39,14 +38,14 @@ urlpatterns = [
     path('my_profile/profile/',member.myprofile,name='myprofile'),
     path('my_profile/profile/follow_list', member.myfollow_list_view, name = 'myfollow_list'),
     path('user_list/',member.user_list,name='user_list'),
-    path('user_list/<user_pk>/profile',member.user_detail,name='user_detail'),
+    path('user_list/<int:profile_id>/profile',member.user_detail,name='user_detail'),
     
     #---------------edit----------------
     path('my_profile/edit/',member.profile_edit,name='profile_edit'),
     path('my_profile/password_edit/',member.password_edit,name='password_edit'),
 
     #---------------follow---------------
-    path('user_list/<user_pk>/follow',member.follow_this_account,name='follow_acc'),
-    path('user_list/<user_pk>/follow_del',member.dont_follow,name='del_follow'),
+    path('user_list/<int:profile_id>/follow',member.follow_this_account,name='follow_acc'),
+    path('user_list/<int:profile_id>/follow_del',member.dont_follow,name='del_follow'),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

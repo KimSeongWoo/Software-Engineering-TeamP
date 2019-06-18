@@ -112,26 +112,26 @@ def password_edit(request):
 
 #------------------------follow시 view--------------------------------
 @login_required
-def follow_this_account(request,user_pk):
-    user = get_object_or_404(User, pk=user_pk) #대상의 유저
-    userprofile = Profile.objects.get(owner_id = user.id)
-    afollow = request.user #팔로우 하는 자신
-    myprofile = Profile.objects.get(owner_id = afollow.id) # 내프로필에서
+def follow_this_account(request,profile_id):
+    #user = get_object_or_404(User, pk=user_pk) #대상의 유저
+    userprofile = Profile.objects.get(id = profile_id)
+    #afollow = request.user #팔로우 하는 자신
+    myprofile = Profile.objects.get(owner_id = request.user.id) # 내프로필에서
     myprofile.following.add(userprofile)#내가 팔로우 하는 사람으로 추가하고
     userprofile.followers.add(myprofile)#대상의 유저 follower에 나를 추가한다.
-    return redirect('user_detail', user_pk=user.id)
+    return redirect('user_detail', profile_id)
 
 #팔로우를 이미 했을 때를 검사해줘야 html내
-def dont_follow(request,user_pk) :
-    user = get_object_or_404(User, pk=user_pk) #대상의 유저
-    userprofile = Profile.objects.get(owner_id = user.id)
-    afollow = request.user #팔로우 하는 자신
-    myprofile = Profile.objects.get(owner_id = afollow.id) # 내프로필에서
+def dont_follow(request,profile_id) :
+    #user = get_object_or_404(User, pk=user_pk) #대상의 유저
+    userprofile = Profile.objects.get(id=profile_id)
+    #afollow = request.user #팔로우 하는 자신
+    myprofile = Profile.objects.get(owner_id = request.user.id) # 내프로필에서
     userprofile.followers.remove(myprofile)#대상의 유저 follower에 나를 제거한다.
     myprofile.followers.remove(userprofile)#내가 팔로우 하는 사람으로 제거하고
 
     #대상의 유저 follower에 나를 제거한다.
-    return redirect('user_detail', user_pk=user.id)
+    return redirect('user_detail', profile_id)
 
 def myfollow_list_view(request) :
     user = request.user
@@ -144,16 +144,16 @@ def myfollow_list_view(request) :
 #-----------------------------------------Others-------------------------------------------------------------타인에게 접속용
 
 def user_list(request):
-    users = User.objects.all()
-    context = {'users': users,}
-    return render(request, 'user_list.html', context)
+    profiles=Profile.objects.all()
+    return render(request, 'user_list.html', context={'profiles':profiles})
 
 @login_required
-def user_detail(request, user_pk):
-    user = get_object_or_404(User, pk=user_pk)
-    profile = Profile.objects.get(owner_id = user.id)
-    data ={'owner':profile.owner_id,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
-    return render(request, 'OthersProfile/user_detail.html', context={'data': data})
+def user_detail(request, profile_id):
+    #user = get_object_or_404(User, pk=user_pk)
+    profile = Profile.objects.get(id = profile_id)
+    #posts = Post.objects.filter(owner=user)
+    data ={'사진':profile.photo,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
+    return render(request, 'OthersProfile/user_detail.html', context={'data': data, 'profile':profile})
 
 @login_required
 def userfollow_list_view(request,user_pk) :

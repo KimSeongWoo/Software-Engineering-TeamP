@@ -1,16 +1,22 @@
 ﻿{% extends 'base.html' %}
 {% block fixed_nav%}
 <body>
-    <h1>user_detail another</h1>
+    <h3>{{data.이름}} 님을 방문했습니다</h3>
         <h2>프로필 정보 : {{data.이름}}</h2>
     <ul>
         {% for key,value in data.items %}
-        <li>{{key}} : {{value}}</li>
+        {%if key == '사진'%}
+        <div class="photo" style="width: 18rem;">
+        <img src="{{ value.url }}" class="profile-img" alt="..." width="200" height="150">
+        </div>
+        {%else %}
+        <li id="other_profile">{{key}} : {{value}}</li>
+        {% endif %}
         {% endfor %}
     </ul>
 
     <a href='{% url 'user_list' %}'>다른 계정보기</a>
-    <a href='{% url 'follow_acc' user_pk=data.owner%}'>팔로우하기</a>
-    <a href='{% url 'del_follow' user_pk=data.owner%}'>팔로우취소</a>
+    <a href='{% url 'follow_acc' profile.id%}'>팔로우하기</a>
+    <a href='{% url 'del_follow' profile.id%}'>팔로우취소</a>
 </body>
 {% endblock %}

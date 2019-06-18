@@ -76,6 +76,12 @@
     align-items: flex-end;
 }
 
+#other_profile {
+    color: darkorange;
+    font-size: 1.5rem;
+    font-family: 'Nanum Pen Script', cursive;
+}
+
 i {
     font-size: 1.5rem;
     margin: 1rem;

@@ -4,17 +4,18 @@
     <div class="left"></div>
         <div class="content">
             <div class="gray user_list_follow">
-        팔로우할 만한 계정 둘러보기 
+        팔로우할 만한 유저 둘러보기 
     </div>
-     아이디로 표시
-    {% for user in users %}
+     <h5>프로필로 표시</h5>
+    {% for profile in profiles %}
+        {% if profile.name is not None %}
         <div class="user">
-            <div class="user_id">
-                
-            <a class="gray" href="{% url 'user_detail' user_pk=user.id %}">{{ user.username }}</a>
+            <div class="profile_id">
+            <img src="{{profile.photo.url}}" alt="" style="border-radius:50%;height:30px; width:30px;">
+            <a class="gray" href="{% url 'user_detail' profile.id %}">{{ profile.name }}</a>
             </div>
-
         </div>
+            {%endif %}
     {% endfor %}
 </div>
 </body>
