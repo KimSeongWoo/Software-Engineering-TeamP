@@ -86,6 +86,7 @@
     <Content Include="Member\templates\Login\login.html" />
     <Content Include="Member\templates\Login\login_error.html" />
     <Content Include="Member\templates\Login\logout.html" />
+    <Content Include="Member\templates\OthersProfile\user_detail_posts.html" />
     <Content Include="Member\templates\Profile\myfollow_list.html" />
     <Content Include="Member\templates\Profile\password_edit.html" />
     <Content Include="Member\templates\Login\register.html" />
