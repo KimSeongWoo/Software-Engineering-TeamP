@@ -213,14 +213,17 @@ header img {
                             </div>
                         </div>
                         <div class="comment">
+
                             D'oh!<br>
                             comment2<br>
                         </div>
-                        <div class="comment_form">
-                            <form action=" ">
-                                <input type="text" placeholder="comment">
-                            </form>
-                        </div>
+                         <form action="{% url 'comment_create' post.id%}" method="post" enctype="multipart/form-data">  {% csrf_token %}
+                              <div class="comment_form">
+                                 <label for="body"></label>
+                                     <input type="text" name="body" id ="body" class="form-control" placeholder="comment"> <button type="submit" class="btn btn-warning">작성</button><br>
+                           
+                               </div>
+                       </form>
                     </div>
                     {% endfor %}
                 </section>
