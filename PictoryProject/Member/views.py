@@ -192,3 +192,10 @@ def TMP_plus(request,post_pk):
     post.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def signoutview(request):
+    delete_user=User.objects.get(id=request.user.id)
+    logout(request)
+    delete_user.delete()
+
+    return redirect("home")

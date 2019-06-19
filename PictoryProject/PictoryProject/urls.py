@@ -26,6 +26,7 @@ urlpatterns = [
     path('logout/',member.logoutview,name='logout'),
     path('<int:post_pk>/like',member.like_plus,name='like_plus'),
     path('<int:post_pk>/TMP',member.TMP_plus,name='TMP_plus'),
+    path('myprofile/profile/signout',member.signoutview,name='signout'),
    
     #--------------posting----------------
 
