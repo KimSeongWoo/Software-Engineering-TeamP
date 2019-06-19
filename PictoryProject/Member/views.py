@@ -178,3 +178,17 @@ def user_detail_posts  (request, user_pk):
     profile = Profile.objects.get(owner_id = user.id)
     data ={'owner':profile.owner_id,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
     return render(request, 'OthersProfile/user_detail_posts.html', context={'data': data})
+
+def like_plus(request,post_pk):
+    post=Post.objects.get(id=post_pk)
+    post.like+=1
+    post.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def TMP_plus(request,post_pk):
+    post=Post.objects.get(id=post_pk)
+    post.TMP+=1
+    post.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

@@ -27,16 +27,15 @@
                         </div>
                         <div class="info">
                             <div class="info_left">
-                                <i class="far fa-heart"></i>
                                 <i class="far fa-comment"></i>
-                                <i class="fas fa-upload"></i>
+                                <a href="{% url 'like_plus' post.id %}"><i class="far fa-heart">{{post.like}}</i></a>
+                                <a href="{% url 'TMP_plus' post.id %}"><i class="fas fa-magic">{{post.TMP}}</i></a>
                             </div>
                             <div class="info_right">
                                 {%if post.user_id == user.id%}
                                 <a href="{% url 'edit_post' post.id %}?next={{request.path}}"><i class="far fa-edit"></i></a>
                                 <a href="{% url 'delete_post' post.id %}"><i class="fas fa-trash-alt"></i></a>
                                 {%endif%}
-                                <i class="far fa-bookmark"></i>
                             </div>
                         </div>
                         <div class="comment">

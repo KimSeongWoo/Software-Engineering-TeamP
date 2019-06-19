@@ -174,9 +174,8 @@ header img {
                 <h2>Pictory</h2>
             </div>
             <div class="right">
-                <i class="far fa-heart"></i>
+                <a href="{% url 'myfollow_list' %}"><i class="fas fa-users"></i></a>
                 <a href="{% url 'myprofile' %}"><i class="far fa-user"></i></a>
-                <i class="fas fa-bookmark"></i>
             </div>
         </div>
         <div class="main">
@@ -200,14 +199,13 @@ header img {
                         </div>
                         <div class="info">
                             <div class="info_left">
-                                <i class="far fa-heart"></i>
                                 <i class="far fa-comment"></i>
-                                <i class="fas fa-upload"></i>
+                                <i class="far fa-heart">{{post.like}}</i>
+                                <i class="fas fa-magic">{{post.TMP}}</i>
                             </div>
                             <div class="info_right">
                                 <a href="{% url 'edit_post' post.id %}?next={{request.path}}"><i class="far fa-edit"></i></a>
                                 <a href="{% url 'delete_post' post.id %}"><i class="fas fa-trash-alt"></i></a>
-                                <i class="far fa-bookmark"></i>
                             </div>
                         </div>
                         <div class="comment">
