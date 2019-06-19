@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.http import HttpResponseRedirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -93,7 +94,6 @@ def profile_edit(request):
             new_profile.phone = form.cleaned_data['phone']
             new_profile.introduction = form.cleaned_data['introduction']
             new_profile.save()
-
             return redirect("myprofile")
         else:
             return render(request,"profile/myprofile.html")

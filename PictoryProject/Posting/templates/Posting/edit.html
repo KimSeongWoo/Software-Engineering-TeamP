@@ -163,7 +163,7 @@ header img {
         <div class="main">
             <div class="main_left">
                 <section class="card_section">
-                    <form action="{% url 'update_post' old.id %}" method="post" enctype="multipart/form-data">
+                    <form action="{% url 'edit_post' old.id %}?next={{nextpage}}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="Input_title">제목</label><br />
