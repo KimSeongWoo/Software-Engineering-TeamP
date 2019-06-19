@@ -22,15 +22,7 @@ class Profile(models.Model) :
 
     class Meta:
         ordering = ['-owner_id'] #정렬 -면 반대
-
-
-#class Follow(models.Model):
-#    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-#    follow_profile=models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
-
-#    def __str__(self):
-#        return self.following_profile.name
-
+    
 class Following(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     following_profile=models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
