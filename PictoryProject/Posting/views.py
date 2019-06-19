@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.utils import timezone
-from .models import Post, Comment
+from .models import Post, Comment, Report
 from django.contrib.auth.models import User
 import sys
 sys.path.append("..")   #상위 폴더 import는 이렇게 한다
@@ -93,3 +93,22 @@ def comment_delete(request,comment_pk):
     delcomment.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     #cur_comment = get_object_or_404(Comment,id = comment_pk)
+
+
+#------------------------report--------------------------------------
+
+def report_post(request, post_pk) :
+    next_path = request.GET.get('next')
+    if request.method == "POST" :
+        form = Report()
+        form.title = request.POST['title']
+        form.content = request.POST['content']
+        form.rub_date = timezone.datetime.now()
+        form.post = Post.objects.get(id = post_pk)
+        form.save()
+        return redirect(next_path)
+    else :
+        form = Report()
+        reportone = Post.objects.get(id = post_pk)
+        return render(request, "Posting/report_post_page.html",{'form' : form, 'post' : reportone,'nextpage' : next_path})
+    

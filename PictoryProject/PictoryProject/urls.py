@@ -32,7 +32,8 @@ urlpatterns = [
     path('posting/create/',post.create,name='create'),
     path('posting/delete/<int:post_id>/',post.delete,name='delete_post'),
     path('posting/edit/<int:post_id>/',post.edit,name='edit_post'),
-   # path('posting/update/<int:post_id>/',post.update,name='update_post'),
+    path('posting/report/<int:post_pk>',post.report_post, name='report_post'),
+   #path('posting/update/<int:post_id>/',post.update,name='update_post'),
 
     #----------------comment---------------
     path('comment/create/<int:post_pk>',post.comment_create,name='comment_create'),
@@ -52,5 +53,7 @@ urlpatterns = [
     #---------------follow---------------
     path('user_list/<int:profile_id>/follow/',member.follow_this_account,name='follow_acc'),
     path('user_list/<int:profile_id>/follow_del/',member.dont_follow,name='del_follow'),
+
+
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

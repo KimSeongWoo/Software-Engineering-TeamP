@@ -6,16 +6,13 @@ from django.contrib.auth.models import User
 # blank : 빈칸을 허용한다.  필수 필드가 아님을 선언한다.
 class Profile(models.Model) :
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    #mypw = models.CharField(max_length = 20, blank = True)
     name = models.CharField(max_length = 30, null = True, blank = True)
     photo = models.ImageField(upload_to='images/',null = True, blank = True)
     email = models.CharField(max_length = 30, null = True, blank = True)
     phone = models.CharField(max_length = 20, null = True, blank = True)
     introduction = models.CharField(max_length = 100, default = '안녕하세요!',blank = True)
     leaveparty = models.BooleanField(default = False) # 탈퇴용 boolean
-    # changed_password =  models.CharField(max_length = 20, null = True,blank = False)
-    #followers = models.ManyToManyField("self", blank = True)
-    #following = models.ManyToManyField("self", blank = True)
+   
 
     def __str__(self):  #profile의 대표적으로 보일 것을 지정하는 것
         return self.owner.username

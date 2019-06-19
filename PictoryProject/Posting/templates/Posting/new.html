@@ -176,9 +176,10 @@ header img {
                             <label for="Input_des">이야기</label><br />
                             <textarea class="form-control" name="des" id="Input_des" rows="20" cols="70"></textarea><br />
                         </div>
-                        <input type="hidden" name="user_id" value="{{user.id}}"> 
-                        <button type="submit" class="btn btn-warning">작성</button>
+                        <input type="hidden" name="user_id" value="{{user.id}}"> <br>
+                        <button type="submit" class="btn btn-warning">작성</button><br>
                     </form>
+                        <button onclick="window.location.href='{%url 'posting'%}'">돌아가기</button>
                 </section>
             </div>
             <div class="main_right">
