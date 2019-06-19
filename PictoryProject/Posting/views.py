@@ -82,7 +82,6 @@ def comment_update(reqeust,comment_pk) :
         updated = Comment.objects.get(id = comment_pk)
         return render(reqeust,"Comments/comment_update.html",{'comment':updated})
 
-
 def comment_delete(reqeust,comment_pk):
     delcomment = Comment.objects.get(id = comment_pk)
     delcomment.delete()

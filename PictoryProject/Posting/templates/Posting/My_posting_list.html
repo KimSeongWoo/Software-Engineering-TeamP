@@ -213,12 +213,13 @@ header img {
                             </div>
                         </div>
                         <div class="comment">
-
-                            D'oh!<br>
-                            comment2<br>
                             {%for comment in all_comment%}
                                 {%if post.id == comment.post_id%}
-                                    {{post.user_id}} : {{comment.body}} <a href ="{%url 'comment_update' comment.id%}">변경</a> <a href ="{%url 'comment_delete' comment.id%}">삭제</a><br>   
+                                    {{post.user_id}} : {{comment.body}} 
+                                    {%if comment.owner_id == user.id%}
+                                    <a href ="{%url 'comment_update' comment.id%}">변경</a> <a href ="{%url 'comment_delete' comment.id%}">삭제</a>
+                                    {%endif%}
+                                    <br>
                                 {%endif%}
                             {%endfor%}
                         </div>
