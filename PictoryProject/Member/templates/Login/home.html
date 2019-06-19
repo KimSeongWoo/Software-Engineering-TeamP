@@ -13,6 +13,9 @@
                         <header>
                             <img src="{{profile.photo.url}}" alt=""> 
                             <div class="user_name">{{profile.name}}</div>
+                            <div class="report_page"> 
+                            <a href="{% url 'report_post' post_pk=post.id%}?next={{request.path}}">신고하기</a>
+                            </div>
                         </header>
                         {% endif %}
                         {% endfor %}

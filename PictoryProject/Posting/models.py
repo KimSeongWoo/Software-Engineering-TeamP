@@ -29,3 +29,13 @@ class Comment(models.Model):
     class Meta:
         ordering = ['cub_date'] #정렬 -면 반대
         """
+
+
+class Report(models.Model):
+    title = models.CharField(max_length=100,blank = False)
+    content = models.TextField(max_length = 255)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null = True)
+    rub_date = models.DateTimeField('ch add date')
+
+    class Meta:
+        ordering = ['rub_date'] #정렬 -면 반대
