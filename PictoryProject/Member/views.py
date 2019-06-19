@@ -77,7 +77,7 @@ def myprofile(request):
     user=request.user
     profile = Profile.objects.get(owner_id = user.id)
     data ={'사진':profile.photo,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
-    return render(request, 'profile/myprofile.html', context={'data': data})
+    return render(request, 'Profile/myprofile.html', context={'data': data})
     
 #--------------------edit-----------------------프로필, 비밀번호
 @login_required 
@@ -96,12 +96,12 @@ def profile_edit(request):
             new_profile.save()
             return redirect("myprofile")
         else:
-            return render(request,"profile/myprofile.html")
+            return render(request,"Profile/myprofile.html")
      else: #GET방식
         form = ProfileEditForm()
         user=request.user
         old_profile = Profile.objects.get(owner_id = user.id)
-        return render(request, "profile/myprofile_edit.html", context = {"form": form, "old" : old_profile})
+        return render(request, "Profile/myprofile_edit.html", context = {"form": form, "old" : old_profile})
 
 @login_required 
 def password_edit(request):
@@ -114,10 +114,10 @@ def password_edit(request):
             logout(request)
             return redirect("home")
         else:
-            return render(request,"profile/password_edit_error.html")
+            return render(request,"Profile/password_edit_error.html")
      else: #GET방식
         form = PasswordEditForm()
-        return render(request, "profile/password_edit.html", {"form": form})
+        return render(request, "Profile/password_edit.html", {"form": form})
 
 
 #------------------------follow시 view--------------------------------
