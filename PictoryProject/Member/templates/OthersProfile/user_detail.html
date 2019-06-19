@@ -16,7 +16,18 @@
     </ul>
 
     <a href='{% url 'user_list' %}'>다른 계정보기</a>
-    <a href='{% url 'follow_acc' profile.id %}'>팔로우하기</a>
-    <a href='{% url 'del_follow' profile.id %}'>팔로우취소</a>
+    {% for f in followed.all%}
+        {%if f.following_profile_id == data.id%}
+             <a href='{% url 'del_follow' profile.id %}'>팔로우취소</a>
+        {%else%}
+             <a href='{% url 'follow_acc' profile.id %}'>팔로우하기</a>
+        {%endif%}
+    {% endfor %}
+    {%if followed.count == 0 %}
+        <a href='{% url 'follow_acc' profile.id %}'>팔로우하기</a>
+    {%endif%}
+    
+    
+    
 </body>
 {% endblock %}
