@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseRedirect
 from django.utils import timezone
 from .models import Post, Comment
 from django.contrib.auth.models import User
@@ -40,28 +41,27 @@ def create(request):
 def delete(request, post_id):
     post=get_object_or_404(Post, pk=post_id)
     post.delete()
-
-    return redirect('/posting/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def edit(request, post_id):
-    old_post = get_object_or_404(Post,pk=post_id)
-    return render(request, "Posting/edit.html", {"old" : old_post})
-
-def update(request,post_id):
-    post=get_object_or_404(Post,pk=post_id)
-    post.title = request.POST.get('title',False)
-    post.description = request.POST.get('des',False)
-    post.pub_date = timezone.datetime.now()
-    if(request.POST.get('image')!=''):
-        post.image=request.FILES['image']
-    post.save()
-
-    return redirect('/posting/')
+     next_path = request.GET.get('next')
+     if request.method=="POST":
+        post=get_object_or_404(Post,pk=post_id)
+        post.title = request.POST.get('title',False)
+        post.description = request.POST.get('des',False)
+        post.pub_date = timezone.datetime.now()
+        if(request.POST.get('image')!=''):
+            post.image=request.FILES['image']
+        post.save()
+        return redirect(next_path)
+     else :
+        old_post = get_object_or_404(Post,pk=post_id)
+        return render(request, "Posting/edit.html", {"old" : old_post,'nextpage' : next_path})
 
 
 #--------------------------comment-------------------------------------//대화형식으로 만들어보자
-#___________________________ my posting에 comment
+
 def comment_create(request,post_pk):
     #cur_post = get_object_or_404(Post, id = post_pk )
     new_comment = Comment()
@@ -73,21 +73,23 @@ def comment_create(request,post_pk):
     comment_user_profile=Profile.objects.get(owner_id=comment_user.id)
     new_comment.owner = comment_user_profile
     new_comment.save() 
-    return redirect("posting")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-def comment_update(reqeust,comment_pk) :
-    if reqeust.method=="POST":
+def comment_update(request,comment_pk) :
+    next_path = request.GET.get('next')
+    if request.method=="POST":
         updated = Comment.objects.get(id = comment_pk)
-        updated.body = reqeust.POST['body']
+        updated.body = request.POST['body']
         updated.cub_date = timezone.datetime.now()
         updated.save()
-        return redirect("posting")
+        return redirect(next_path)
+        #return redirect("posting")
     else :
         updated = Comment.objects.get(id = comment_pk)
-        return render(reqeust,"Comments/comment_update.html",{'comment':updated})
+        return render(request,"Comments/comment_update.html",{'comment':updated,'nextpage' : next_path})
 
-def comment_delete(reqeust,comment_pk):
+def comment_delete(request,comment_pk):
     delcomment = Comment.objects.get(id = comment_pk)
     delcomment.delete()
-    return redirect("posting")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     #cur_comment = get_object_or_404(Comment,id = comment_pk)

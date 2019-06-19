@@ -32,7 +32,7 @@ urlpatterns = [
     path('posting/create/',post.create,name='create'),
     path('posting/delete/<int:post_id>/',post.delete,name='delete_post'),
     path('posting/edit/<int:post_id>/',post.edit,name='edit_post'),
-    path('posting/update/<int:post_id>/',post.update,name='update_post'),
+   # path('posting/update/<int:post_id>/',post.update,name='update_post'),
 
     #----------------comment---------------
     path('comment/create/<int:post_pk>',post.comment_create,name='comment_create'),

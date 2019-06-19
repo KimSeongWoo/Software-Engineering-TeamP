@@ -187,7 +187,7 @@ header img {
                         <header>
                             <img src="{{profile.photo.url}}" alt="">  <!--현재 유저의 profile가져와서 프로필썸네일-->
                             <!--img src="img/Satomi1.png" alt=""-->
-                            <div class="user_name">{{user.username}}</div> <!--현재 유저의 username-->
+                            <div class="user_name">{{profile.name}}</div> <!--현재 유저의 username-->
                         </header>
                         <div>
                             <h4>{{post.title}}</h4>
@@ -205,7 +205,7 @@ header img {
                                 <i class="fas fa-upload"></i>
                             </div>
                             <div class="info_right">
-                                <a href="{% url 'edit_post' post.id %}"><i class="far fa-edit"></i></a>
+                                <a href="{% url 'edit_post' post.id %}?next={{request.path}}"><i class="far fa-edit"></i></a>
                                 <a href="{% url 'delete_post' post.id %}"><i class="fas fa-trash-alt"></i></a>
                                 <i class="far fa-bookmark"></i>
                             </div>
@@ -213,9 +213,9 @@ header img {
                         <div class="comment">
                             {%for comment in all_comment%}
                                 {%if post.id == comment.post_id%}
-                                    {{post.user.name}} : {{comment.body}} 
-                                    {%if comment.post.user_id == user.id%}
-                                    <a href ="{%url 'comment_update' comment.id%}">변경</a> <a href ="{%url 'comment_delete' comment.id%}">삭제</a>
+                                    {{comment.owner.name}} : {{comment.body}} 
+                                    {%if comment.owner_id == user.id%}
+                                    <a href ="{%url 'comment_update' comment.id%}?next={{request.path}}">변경</a> <a href ="{%url 'comment_delete' comment.id%}">삭제</a>
                                     {%endif%}
                                     <br>
                                 {%endif%}
