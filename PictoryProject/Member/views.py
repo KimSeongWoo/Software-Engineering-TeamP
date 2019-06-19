@@ -18,7 +18,12 @@ def home(request):
         data ={'username': request.user,'is_authenticated': request.user.is_authenticated}
         return render(request, 'Login/home.html', context={'data': data})
     else:  #여기서 프로필 보여주는걸로
-        timeline=Post.objects.all().order_by('-pub_date')
+        myfollowings=Following.objects.filter(owner=request.user)
+        timeline=Post.objects.filter(user_id=request.user.id)
+        for myfollowing in myfollowings:
+            timeline = timeline | Post.objects.filter(user_id=myfollowing.following_profile_id)
+        timeline = timeline.order_by('-pub_date')
+        #timeline=Post.objects.all().order_by('-pub_date')
         comments=Comment.objects.all().order_by('-cub_date')
         allprofile=Profile.objects.all()
         data ={'username': request.user.username,'password':request.user.password,'is_authenticated': request.user.is_authenticated}
