@@ -33,7 +33,7 @@ def create(request):
     post.image = request.FILES['image']
     post.like=0
     post.TMP=0
-    post.user=get_object_or_404(User,pk=request.POST.get('user_id',False))
+    post.user=Profile.objects.get(owner_id = request.POST['user_id'])
     post.save()
     return redirect("posting")
 
@@ -76,6 +76,7 @@ def comment_update(reqeust,comment_pk) :
     if reqeust.method=="POST":
         updated = Comment.objects.get(id = comment_pk)
         updated.body = reqeust.POST['body']
+        updated.cub_date = timezone.datetime.now()
         updated.save()
         return redirect("posting")
     else :
