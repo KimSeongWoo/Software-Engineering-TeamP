@@ -38,7 +38,7 @@ urlpatterns = [
     path('comment/create/<int:post_pk>',post.comment_create,name='comment_create'),
     path('comment/delete/<int:comment_pk>',post.comment_delete,name='comment_delete'),
     path('comment/update/<int:comment_pk>',post.comment_update,name='comment_update'),
-
+    
     #--------------profile----------------
     path('my_profile/profile/',member.myprofile,name='myprofile'),
     path('my_profile/profile/follow_list', member.myfollow_list_view, name = 'myfollow_list'),

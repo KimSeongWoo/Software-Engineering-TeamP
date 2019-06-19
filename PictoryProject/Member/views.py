@@ -6,7 +6,9 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, LoginForm, ProfileShowForm, ProfileEditForm, PasswordEditForm
 from .models import Profile,Following,Follower
-
+import sys
+sys.path.append("..")   #상위 폴더 import는 이렇게 한다
+from Posting.models import Post,Comment
 
 # Create your views here.
 
@@ -15,9 +17,12 @@ def home(request):
         data ={'username': request.user,'is_authenticated': request.user.is_authenticated}
         return render(request, 'Login/home.html', context={'data': data})
     else:  #여기서 프로필 보여주는걸로
+        timeline=Post.objects.all().order_by('-pub_date')
+        comments=Comment.objects.all().order_by('-cub_date')
+        allprofile=Profile.objects.all()
         data ={'username': request.user.username,'password':request.user.password,'is_authenticated': request.user.is_authenticated}
         profile=Profile.objects.get(owner_id=request.user.id)
-        return render(request, 'Login/home.html', context={'data': data, 'profile':profile})
+        return render(request, 'Login/home.html', context={'data': data, 'profile':profile, 'timeline':timeline,'comments':comments,'allprofile':allprofile})
 
 def loginview(request):
     if request.method=="POST":

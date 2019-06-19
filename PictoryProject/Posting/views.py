@@ -68,7 +68,10 @@ def comment_create(request,post_pk):
     new_comment.body = request.POST['body']
     new_comment.cub_date = timezone.datetime.now()
     new_comment.post =  Post.objects.get(id = post_pk)
-    new_comment.owner = Profile.objects.get(owner_id = new_comment.post.user_id)
+    #new_comment.owner = Profile.objects.get(owner_id = new_comment.post.user_id)
+    comment_user=request.user
+    comment_user_profile=Profile.objects.get(owner_id=comment_user.id)
+    new_comment.owner = comment_user_profile
     new_comment.save() 
     return redirect("posting")
 
