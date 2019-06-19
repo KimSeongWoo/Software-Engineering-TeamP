@@ -62,7 +62,7 @@ def comment_create(request,post_pk):
     new_comment = Comment()
     new_comment.body = request.POST['body']
     new_comment.cup_date = timezone.datetime.now()
-    new_commnet.post =  Post.objects.get(id = post_pk)
+    new_comment.post =  Post.objects.get(id = post_pk)
     new_comment.save() 
     return redirect("posting")
 
