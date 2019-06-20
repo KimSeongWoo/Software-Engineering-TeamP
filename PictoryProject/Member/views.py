@@ -72,7 +72,7 @@ def register(request):
 
 #--------------------MY-----------------------------------------------------------------------------------------------------------나 관리용
 #--------------------Profile----------------------
-@login_required # 로그인 여부를 검사하여 접근을 통제할 수 있다. 단, 함수형 뷰일때만
+@login_required(login_url = 'login') # 로그인 여부를 검사하여 접근을 통제할 수 있다. 단, 함수형 뷰일때만
 def myprofile(request):
     user=request.user
     profile = Profile.objects.get(owner_id = user.id)
@@ -80,7 +80,7 @@ def myprofile(request):
     return render(request, 'Profile/myprofile.html', context={'data': data})
     
 #--------------------edit-----------------------프로필, 비밀번호
-@login_required 
+@login_required(login_url = 'login') 
 def profile_edit(request):
      if request.method=="POST":
         form = ProfileEditForm(request.POST)
@@ -103,7 +103,7 @@ def profile_edit(request):
         old_profile = Profile.objects.get(owner_id = user.id)
         return render(request, "Profile/myprofile_edit.html", context = {"form": form, "old" : old_profile})
 
-@login_required 
+@login_required(login_url = 'login') 
 def password_edit(request):
      if request.method=="POST":
         form = PasswordEditForm(request.POST)
@@ -121,7 +121,7 @@ def password_edit(request):
 
 
 #------------------------follow시 view--------------------------------
-@login_required
+@login_required(login_url = 'login')
 def follow_this_account(request,profile_id):
     userprofile = Profile.objects.get(id = profile_id)
     following=Following()  
@@ -146,6 +146,7 @@ def dont_follow(request,profile_id) :
 
     return redirect('user_detail', profile_id)
 
+@login_required(login_url = 'login')
 def myfollow_list_view(request) :
     user = request.user
     userprofile = Profile.objects.get(owner_id = user.id)
@@ -156,11 +157,12 @@ def myfollow_list_view(request) :
 
 #-----------------------------------------Others-------------------------------------------------------------타인에게 접속용
 
+@login_required(login_url = 'login')
 def user_list(request):
     profiles=Profile.objects.all()
     return render(request, 'user_list.html', context={'profiles':profiles})
 
-@login_required
+@login_required(login_url = 'login')
 def user_detail(request, profile_id):
     profile = Profile.objects.get(id = profile_id)
     followed = Following.objects.filter(owner=request.user)
@@ -168,11 +170,8 @@ def user_detail(request, profile_id):
     data ={'id':profile.id, '사진':profile.photo,'이름': profile.name,'Email' : profile.email,'phone':profile.phone,'소개말':profile.introduction,}
     return render(request, 'OthersProfile/user_detail.html', context={'data': data, 'profile':profile,'followed':followed})
 
-@login_required
-def userfollow_list_view(request,user_pk) :
-    ...
 
-@login_required
+@login_required(login_url = 'login')
 def user_detail_posts  (request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
     profile = Profile.objects.get(owner_id = user.id)

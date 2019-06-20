@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="base_templates\base.html" />
+    <Content Include="Member\templates\base.html" />
     <Content Include="Member\templates\Login\home.html" />
     <Content Include="Member\templates\Login\login.html" />
     <Content Include="Member\templates\Login\login_error.html" />
